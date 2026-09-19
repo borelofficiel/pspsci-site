@@ -1,0 +1,10 @@
+{
+  "description": "Provides a modern, professional platform presenting the private health sector of Côte d’Ivoire with comprehensive institutional information and contact details.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
