@@ -17,7 +17,6 @@ import {
   Search,
   Plus,
   Settings,
-  Ruler,
 } from "lucide-react";
 
 // ─── Données — Établissements privés de santé en Côte d'Ivoire ───────────────
@@ -195,19 +194,21 @@ export default function Cartographie() {
   const [selectedType, setSelectedType] = useState("Tous les types");
   const [selectedService, setSelectedService] = useState("Tous les services");
   const [showLegend, setShowLegend] = useState(true);
-  const [simulationMode, setSimulationMode] = useState(false);
-  const [simulationPoints, setSimulationPoints] = useState<
-    Array<{ lat: number; lng: number }>
-  >([]);
+  // const [simulationMode, setSimulationMode] = useState(false);
+  // const [simulationPoints, setSimulationPoints] = useState<
+  //   Array<{ lat: number; lng: number }>
+  // >([]);
   const [selectedEtablissement, setSelectedEtablissement] =
     useState<Etablissement | null>(null);
-  const [showDistanceCalculator, setShowDistanceCalculator] = useState(false);
+  // const [showDistanceCalculator, setShowDistanceCalculator] = useState(false);
   const [activeFilter, setActiveFilter] = useState<
     "conforme" | "proche" | "surcharge" | null
   >(null);
 
+  // ─── Lien Google Maps : médecins et spécialistes privés en Côte d'Ivoire ───
   const googleMapsUrl = useMemo(() => {
     const parts: string[] = [];
+    parts.push("médecin+spécialiste+privé");
     parts.push("clinique+privée");
     parts.push("cabinet+médical");
 
@@ -266,10 +267,10 @@ export default function Cartographie() {
     setActiveFilter(activeFilter === filter ? null : filter);
   };
 
-  const clearSimulation = () => {
-    setSimulationPoints([]);
-    setSimulationMode(false);
-  };
+  // const clearSimulation = () => {
+  //   setSimulationPoints([]);
+  //   setSimulationMode(false);
+  // };
 
   return (
     <div className="h-screen flex flex-col bg-white">
@@ -303,7 +304,7 @@ export default function Cartographie() {
             </div>
 
             <div className="flex items-center gap-2">
-              <button
+              {/* <button
                 onClick={() => setSimulationMode(!simulationMode)}
                 className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                   simulationMode
@@ -322,7 +323,7 @@ export default function Cartographie() {
                   <X className="w-4 h-4" />
                   Effacer ({simulationPoints.length})
                 </button>
-              )}
+              )} */}
 
               <button
                 onClick={() => setIsOpen(true)}
@@ -424,7 +425,7 @@ export default function Cartographie() {
 
               <div className="border-t border-gray-200 my-2"></div>
 
-              <button
+              {/* <button
                 onClick={() => {
                   setSimulationMode(!simulationMode);
                   setIsOpen(false);
@@ -454,7 +455,7 @@ export default function Cartographie() {
                     Effacer simulations ({simulationPoints.length})
                   </span>
                 </button>
-              )}
+              )} */}
             </nav>
           </div>
         </>
@@ -570,7 +571,7 @@ export default function Cartographie() {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Carte des établissements privés de santé en Côte d'Ivoire"
+          title="Carte des médecins et spécialistes privés en Côte d'Ivoire"
         />
 
         {/* Overlay filtre zones */}
@@ -721,17 +722,8 @@ export default function Cartographie() {
           </div>
         )}
 
-        {/* Bouton calculer distance */}
-        <button
-          onClick={() => setShowDistanceCalculator(true)}
-          className="absolute bottom-6 right-6 bg-[#1B4F8A] hover:bg-[#133868] text-white shadow-2xl h-14 px-6 rounded-xl flex items-center gap-2 z-[1000] font-semibold"
-        >
-          <Ruler className="w-5 h-5" />
-          Calculer distance
-        </button>
-
         {/* Légende */}
-        {showLegend && (
+        {/* {showLegend && (
           <div className="absolute top-4 right-4 w-64 bg-white rounded-2xl shadow-lg z-[1000] overflow-hidden">
             <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
               <h3 className="text-sm font-bold text-gray-900">Légende</h3>
@@ -811,7 +803,7 @@ export default function Cartographie() {
               )}
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Carte détail établissement */}
         {selectedEtablissement && (
@@ -892,7 +884,7 @@ export default function Cartographie() {
         )}
 
         {/* Info simulation */}
-        {simulationMode && (
+        {/* {simulationMode && (
           <div className="absolute bottom-4 left-4 w-80 bg-purple-50 border border-purple-200 rounded-2xl shadow-lg z-[1000] overflow-hidden">
             <div className="px-4 py-3 border-b border-purple-100 flex items-center gap-2">
               <Settings className="w-4 h-4 text-purple-900" />
@@ -936,11 +928,11 @@ export default function Cartographie() {
               )}
             </div>
           </div>
-        )}
+        )} */}
       </div>
 
       {/* ══════════ MODAL CALCUL DISTANCE ══════════ */}
-      {showDistanceCalculator && (
+      {/* {showDistanceCalculator && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[2000] p-4">
           <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
@@ -990,7 +982,7 @@ export default function Cartographie() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

@@ -18,7 +18,7 @@ const navLinks = [
   { label: "À propos", href: "#presentation", page: "home" as const },
   { label: "Marketplace", href: "#marketplace", page: "marketplace" as const },
   { label: "Cartographie", href: "#cartographie", page: "cartographie" as const },
-  { label: "Identité digitale", href: "#identite-digitale", page: "identite-digitale" as const },
+  { label: "Annuaire", href: "#identite-digitale", page: "identite-digitale" as const },
   { label: "Actualités", href: "#actualites", page: "actualites" as const },
   { label: "Événements", href: "#evenements", page: "evenements" as const },
   { label: "Formations", href: "#formations", page: "formations" as const },

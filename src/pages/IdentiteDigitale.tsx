@@ -29,6 +29,9 @@ import {
   QrCode,
 } from "lucide-react";
 
+// ✅ Icônes de marque depuis react-icons
+import { FaWhatsapp, FaFacebook, FaTiktok } from "react-icons/fa";
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const avantages = [
@@ -70,7 +73,15 @@ const avantages = [
   },
 ];
 
-// Profils fictifs pour l'aperçu (style annuaire)
+// ─── Type Profil — Enrichi avec les réseaux sociaux ─────────────────────────
+
+type ReseauxSociaux = {
+  whatsapp?: string;
+  facebook?: string;
+  tiktok?: string;
+  siteWeb?: string;
+};
+
 type Profil = {
   id: number;
   nom: string;
@@ -87,6 +98,7 @@ type Profil = {
   services: string[];
   type: "professionnel" | "etablissement";
   couleur: string;
+  reseaux?: ReseauxSociaux;
 };
 
 const profils: Profil[] = [
@@ -106,6 +118,12 @@ const profils: Profil[] = [
     services: ["Cardiologie", "Pédiatrie", "Échographie", "Électrocardiogramme"],
     type: "professionnel",
     couleur: "#1B4F8A",
+    reseaux: {
+      whatsapp: "https://wa.me/2250708091011",
+      facebook: "https://facebook.com/dr.adjoua.konan",
+      tiktok: "https://tiktok.com/@dr.adjoua.konan",
+      siteWeb: "https://dr-konan-cardiologue.ci",
+    },
   },
   {
     id: 2,
@@ -123,6 +141,11 @@ const profils: Profil[] = [
     services: ["Médecine générale", "Vaccination", "Suivi chronique"],
     type: "professionnel",
     couleur: "#2E7D5A",
+    reseaux: {
+      whatsapp: "https://wa.me/2250506070809",
+      facebook: "https://facebook.com/dr.yao.kouame",
+      siteWeb: "https://dr-yao-generaliste.ci",
+    },
   },
   {
     id: 3,
@@ -140,6 +163,12 @@ const profils: Profil[] = [
     services: ["Chirurgie", "Maternité", "Urgences 24h", "Imagerie médicale", "Dialyse"],
     type: "etablissement",
     couleur: "#C9973A",
+    reseaux: {
+      whatsapp: "https://wa.me/2252720000000",
+      facebook: "https://facebook.com/clinique.saintemarie.ci",
+      tiktok: "https://tiktok.com/@clinique.saintemarie",
+      siteWeb: "https://clinique-saintemarie.ci",
+    },
   },
   {
     id: 4,
@@ -157,6 +186,11 @@ const profils: Profil[] = [
     services: ["Gynécologie", "Obstétrique", "Échographie 3D"],
     type: "professionnel",
     couleur: "#8b5cf6",
+    reseaux: {
+      whatsapp: "https://wa.me/2250102030405",
+      facebook: "https://facebook.com/dr.fatou.bamba",
+      siteWeb: "https://dr-bamba-gyneco.ci",
+    },
   },
   {
     id: 5,
@@ -174,6 +208,11 @@ const profils: Profil[] = [
     services: ["Biologie médicale", "Hématologie", "Biochimie"],
     type: "etablissement",
     couleur: "#0891b2",
+    reseaux: {
+      whatsapp: "https://wa.me/2253278000000",
+      facebook: "https://facebook.com/biosante.ci",
+      siteWeb: "https://biosante-ci.com",
+    },
   },
   {
     id: 6,
@@ -191,6 +230,12 @@ const profils: Profil[] = [
     services: ["Chirurgie dentaire", "Orthodontie", "Prothèses"],
     type: "professionnel",
     couleur: "#ec4899",
+    reseaux: {
+      whatsapp: "https://wa.me/2250304050607",
+      facebook: "https://facebook.com/dr.coulibaly.dentiste",
+      tiktok: "https://tiktok.com/@dr.coulibaly.dentiste",
+      siteWeb: "https://dr-coulibaly-dental.ci",
+    },
   },
 ];
 
@@ -786,6 +831,85 @@ export default function IdentiteDigitale() {
                   ))}
                 </div>
               </div>
+
+              {/* ══════════ RÉSEAUX SOCIAUX & SITE WEB ══════════ */}
+              {selectedProfil.reseaux && (
+                <div>
+                  <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                    <Globe className="w-5 h-5 text-[#1B4F8A]" />
+                    Réseaux sociaux & Site web
+                  </h4>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {/* WhatsApp */}
+                    {selectedProfil.reseaux.whatsapp && (
+                      <a
+                        href={selectedProfil.reseaux.whatsapp}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-100 hover:border-[#25D366] hover:bg-[#25D366]/5 transition-all group"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366] transition-colors">
+                          <FaWhatsapp className="w-6 h-6 text-[#25D366] group-hover:text-white transition-colors" />
+                        </div>
+                        <span className="text-xs font-semibold text-gray-700 group-hover:text-[#25D366] transition-colors">
+                          WhatsApp
+                        </span>
+                      </a>
+                    )}
+
+                    {/* Facebook */}
+                    {selectedProfil.reseaux.facebook && (
+                      <a
+                        href={selectedProfil.reseaux.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-100 hover:border-[#1877F2] hover:bg-[#1877F2]/5 transition-all group"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-[#1877F2]/10 flex items-center justify-center group-hover:bg-[#1877F2] transition-colors">
+                          <FaFacebook className="w-6 h-6 text-[#1877F2] group-hover:text-white transition-colors" />
+                        </div>
+                        <span className="text-xs font-semibold text-gray-700 group-hover:text-[#1877F2] transition-colors">
+                          Facebook
+                        </span>
+                      </a>
+                    )}
+
+                    {/* TikTok */}
+                    {selectedProfil.reseaux.tiktok && (
+                      <a
+                        href={selectedProfil.reseaux.tiktok}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-100 hover:border-black hover:bg-black/5 transition-all group"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-black/10 flex items-center justify-center group-hover:bg-black transition-colors">
+                          <FaTiktok className="w-6 h-6 text-black group-hover:text-white transition-colors" />
+                        </div>
+                        <span className="text-xs font-semibold text-gray-700 group-hover:text-black transition-colors">
+                          TikTok
+                        </span>
+                      </a>
+                    )}
+
+                    {/* Site web */}
+                    {selectedProfil.reseaux.siteWeb && (
+                      <a
+                        href={selectedProfil.reseaux.siteWeb}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border border-gray-100 hover:border-[#1B4F8A] hover:bg-[#1B4F8A]/5 transition-all group"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-[#1B4F8A]/10 flex items-center justify-center group-hover:bg-[#1B4F8A] transition-colors">
+                          <Globe className="w-6 h-6 text-[#1B4F8A] group-hover:text-white transition-colors" />
+                        </div>
+                        <span className="text-xs font-semibold text-gray-700 group-hover:text-[#1B4F8A] transition-colors">
+                          Site web
+                        </span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Identifiant PSPSCI */}
               <div className="bg-[#F5F8FD] rounded-xl p-4 flex items-center justify-between">
