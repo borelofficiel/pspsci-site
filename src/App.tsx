@@ -6,7 +6,9 @@ import Formations from "./pages/Formations";
 import Evenements from "./pages/Evenements";
 import Marketplace from "./pages/Marketplace";
 import Cartographie from "./pages/Cartographie";
+import PaiementPage from "./pages/PaiementPage";
 import FloatingSidebar from "./pages/FloatingSidebar";
+import PublicitePopup from "./pages/PublicitePopup"; // ou "./components/PublicitePopup"
 
 const HERO_IMG = "https://images.unsplash.com/photo-1755189118414-14c8dacdb082?w=1600&h=900&fit=crop&auto=format";
 const SURGERY_IMG = "https://images.unsplash.com/photo-1762237798212-bcc000c00891?w=800&h=600&fit=crop&auto=format";
@@ -132,7 +134,8 @@ type PageType =
   | "formations"
   | "evenements"
   | "marketplace"
-  | "cartographie";
+  | "cartographie"
+  | "paiement";
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -159,6 +162,7 @@ export default function App() {
         "evenements",
         "marketplace",
         "cartographie",
+        "paiement",
       ];
 
       if (validPages.includes(page as PageType)) {
@@ -317,6 +321,7 @@ export default function App() {
         {currentPage === "evenements" && <Evenements />}
         {currentPage === "marketplace" && <Marketplace />}
         {currentPage === "cartographie" && <Cartographie />}
+        {currentPage === "paiement" && <PaiementPage />}
 
         {currentPage === "home" && <>
 
@@ -742,9 +747,12 @@ export default function App() {
               Adhérez à la PSPSCI et bénéficiez de tous les services et avantages de la plateforme.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="#contact" className="bg-white text-[#2E7D5A] font-bold px-8 py-3.5 rounded-lg hover:bg-green-50 transition-colors text-sm">
+              <button
+                onClick={() => goToPage("paiement")}
+                className="bg-white text-[#2E7D5A] font-bold px-8 py-3.5 rounded-lg hover:bg-green-50 transition-colors text-sm"
+              >
                 Adhérer maintenant
-              </a>
+              </button>
               <a href="#contact" className="border-2 border-white/60 text-white font-semibold px-8 py-3.5 rounded-lg hover:border-white transition-colors text-sm">
                 En savoir plus
               </a>
@@ -838,6 +846,14 @@ export default function App() {
                       Formations
                     </button>
                   </li>
+                  <li>
+                    <button
+                      onClick={() => goToPage("paiement")}
+                      className="text-blue-200 hover:text-white text-sm transition-colors"
+                    >
+                      Paiement
+                    </button>
+                  </li>
                 </ul>
               </div>
 
@@ -884,6 +900,17 @@ export default function App() {
         </footer>
 
         </>}
+
+         {/* ══════════ FENÊTRE PUBLICITAIRE ══════════ */}
+         <PublicitePopup
+  delay={1500}                          // Première apparition après 1,5s
+  duration={15000}                      // Reste visible 15s
+  interval={10 * 60 * 1000}             // 🔁 Réapparaît toutes les 10 minutes
+  title="Rejoignez la PSPSCI"
+  description="Adhérez dès aujourd'hui et bénéficiez de tous les avantages de la plateforme du secteur privé de la santé en Côte d'Ivoire."
+  ctaLabel="Adhérer maintenant"
+  ctaUrl="#/paiement"
+/>
 
         {/* FloatingSidebar — visible sur TOUTES les pages */}
         <FloatingSidebar />

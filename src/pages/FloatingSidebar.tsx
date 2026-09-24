@@ -8,7 +8,7 @@ import {
   IdCard,
   ShoppingBag,
   MapPin,
-  BarChart3,
+  CreditCard,
 } from "lucide-react";
 
 const items = [
@@ -19,7 +19,7 @@ const items = [
   { icon: IdCard, label: "Identité digitale", color: "#8b5cf6", path: "/identite-digitale", page: "identite-digitale" },
   { icon: ShoppingBag, label: "Marketplace", color: "#6366f1", path: "/marketplace", page: "marketplace" },
   { icon: MapPin, label: "Cartographie", color: "#14b8a6", path: "/cartographie", page: "cartographie" },
-  { icon: BarChart3, label: "Statistiques", color: "#ec4899", path: "/statistiques", page: "statistiques" },
+  { icon: CreditCard, label: "Paiement", color: "#ec4899", path: "/PaiementPage", page: "paiement" },
 ];
 
 export default function FloatingSidebar() {
